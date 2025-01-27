@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Pila implements  IStack {
 
-    private  List<Integer> elementos ;
+    public  List<Integer> elementos;
 
 
     public Pila(){
@@ -19,7 +19,7 @@ public class Pila implements  IStack {
 
     public int pop(){
         if(elementos.isEmpty()){
-            throw new IllegalStateException("La pila está vacía.");
+            throw new IllegalStateException("la pila está vacía");
         }
         return  elementos.remove(elementos.size()-1);
 
@@ -32,7 +32,7 @@ public class Pila implements  IStack {
             case '*': return value1 * value2;
             case '/': 
             if(value2 ==0){
-            throw new ArithmeticException("No se puede dividir por cero");
+                throw new ArithmeticException("No se puede dividir entre cero");
             }
             return value1/value2;
             case '%': return value1%value2;

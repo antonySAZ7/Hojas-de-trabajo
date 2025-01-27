@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -17,9 +18,10 @@ public class FileReader {
         try(BufferedReader br = new BufferedReader(new java.io.FileReader(archivo))){
             String linea;
             while ((linea = br.readLine()) != null){
-                if(!linea.trim().isEmpty()){
-                    expresiones.add(linea.trim());
-                }
+                if (!linea.trim().isEmpty()) {
+                     String[] partes = linea.trim().split("\\s+"); // Lee todo pero separando los elementos por espacios " "
+                     expresiones.addAll(Arrays.asList(partes));   
+                     }
             }
         }
         return expresiones;
