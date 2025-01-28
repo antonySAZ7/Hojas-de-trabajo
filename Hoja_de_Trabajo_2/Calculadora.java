@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Calculadora {
     public static void main(String[] args) {
-        String archivo = "cosa.txt"; 
+        String archivo = "datos.txt"; 
         FileReader lector = new FileReader();
         StackTests stackTests = new StackTests();
 
