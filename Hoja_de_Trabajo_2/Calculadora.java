@@ -5,16 +5,16 @@ public class Calculadora {
     public static void main(String[] args) {
         String archivo = "datos.txt"; 
         FileReader lector = new FileReader();
-        StackTests stackTests = new StackTests();
 
         try {
-            List<String> expresionACalcular = lector.tomarExpresion(archivo);
+            List<List<String>> expresiones = lector.tomarExpresion(archivo);
 
-            System.out.println("Expresión que ha sido leida:" + expresionACalcular);
-
-            int resultado = evaluarExpresion(expresionACalcular, stackTests);
-
-            System.out.println("Resultado:  " + resultado);
+            System.out.println("Expresiones leídas del archivo:");
+            for (List<String> expresion : expresiones) {
+                System.out.println(expresion);
+                int resultado = evaluarExpresion(expresion);
+                System.out.println("Resultado: " + resultado);
+            }
 
         } catch (IOException e) {
             System.out.println("Error al leer el archivo: " + e.getMessage());
@@ -23,20 +23,19 @@ public class Calculadora {
         }
     }
 
-    private static int evaluarExpresion(List<String> expresionACalcular, StackTests stackTests) {
-        for (String token : expresionACalcular) {
+    public static int evaluarExpresion(List<String> expresion) {
+        Pila pila = new Pila(); // Usamos Pila directamente
+        for (String token : expresion) {
             if (esNumero(token)) {
-                // Si es un número entero, se apila
-                stackTests.push(Integer.parseInt(token));
+                pila.push(Integer.parseInt(token));
             } else {
-                int b = stackTests.pop();
-                int a = stackTests.pop();
-                int resultado = stackTests.getPila().operation(token.charAt(0), a, b);
-                stackTests.push(resultado);
+                int b = pila.pop();
+                int a = pila.pop();
+                int resultado = pila.operation(token.charAt(0), a, b);
+                pila.push(resultado);
             }
         }
-
-        return stackTests.pop();
+        return pila.pop();
     }
 
     private static boolean esNumero(String token) {
