@@ -1,3 +1,4 @@
+
 public class InsertionSort <T extends Comparable<T>> implements SortAlgoritmos<T>{
     @Override
     public void sort(T[] array){
