@@ -3,7 +3,7 @@ public class MergeSort<T extends Comparable<T>> implements SortAlgoritmos<T> {
     public void sort(T[] array) {
         if (array.length < 2) return;
         int mid = array.length / 2;
-        T[] left = (T[]) new Comparable[mid];
+        T[] left = (T []) new Comparable[mid];
         T[] right = (T[]) new Comparable[array.length - mid];
 
         System.arraycopy(array, 0, left, 0, mid);
