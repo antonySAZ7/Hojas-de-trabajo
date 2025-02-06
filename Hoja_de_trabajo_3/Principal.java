@@ -35,7 +35,7 @@ public class Principal {
             return;
         }
         long tiempo = test.testeoSort(array);
-        System.out.println("Tiempo de ejecucion" + tiempo + "en nano segundos");
+        System.out.println("Tiempo de ejecucion:  " + tiempo + " en nano segundos");
 
         
 
