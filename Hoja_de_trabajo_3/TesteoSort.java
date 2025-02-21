@@ -1,9 +1,10 @@
 import java.util.Arrays;
 import java.util.Random;
 import java.io.*;
-
+import org.junit.Test;
+import static org.junit.Assert.*;
 public class TesteoSort {
-    private static final int cantidadMaxima = 3000;
+    private static int cantidadMaxima = 3000;
     private SortAlgoritmos<Integer> algoritmos;
     
 
@@ -20,10 +21,10 @@ public class TesteoSort {
 
     }
 
-    public static Integer[] generadoRandomArrays(int tamanio){
+    public static Integer[] generadoRandomArrays(int cantidadMaxima){
         Random random = new Random();
-        Integer[] array =  new Integer[tamanio];
-        for(int i = 0; i<tamanio; i++){
+        Integer[] array =  new Integer[cantidadMaxima];
+        for(int i = 0; i<cantidadMaxima; i++){
             array[i] = random.nextInt(10000);
         }
         return array;
@@ -43,4 +44,19 @@ public class TesteoSort {
         }
     }
     
+    @Test
+    public void testHeapSort() {
+        Integer[] array = {4, 10, 3, 5, 1};
+        HeapSort<Integer> sorter = new HeapSort<>();
+        sorter.sort(array);
+        assertArrayEquals(new Integer[]{1, 3, 4, 5, 10}, array);
+    }
+
+    @Test
+    public void testQuickSort() {
+        Integer[] array = {8, 2, 7, 6, 1};
+        QuickSort<Integer> sorter = new QuickSort<>();
+        sorter.sort(array);
+        assertArrayEquals(new Integer[]{1, 2, 6, 7, 8}, array);
+    }
 }
