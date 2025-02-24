@@ -1,6 +1,11 @@
 import java.util.Vector;
 
 public class SVector<T> implements IStack<T> {
+
+    public boolean isEmpty() {
+        return stack.isEmpty();
+    }
+
     private Vector<T> stack = new Vector<>();
 
     public void push(T t) {
@@ -23,10 +28,7 @@ public class SVector<T> implements IStack<T> {
     }
 
 
-    public boolean isEmpty() {
-        return stack.isEmpty();
-    }
-
+   
 
 
 }

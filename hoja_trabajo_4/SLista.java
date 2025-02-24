@@ -3,6 +3,10 @@
 public class SLista<T> implements IStack<T> {
     private ILista<T> stack;
 
+    public boolean isEmpty() {
+        return stack.isEmpty();
+    }
+
     public SLista(ILista<T> lista) {
         this.stack = lista;
     }
@@ -23,8 +27,6 @@ public class SLista<T> implements IStack<T> {
         return null;
     }
 
-    public boolean isEmpty() {
-        return stack.isEmpty();
-    }
+   
     
 }

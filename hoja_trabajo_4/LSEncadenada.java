@@ -1,12 +1,15 @@
 public class LSEncadenada<T> implements ILista<T> {
     private static class Nodo<T>{
-        T dato;
+        T info;
         Nodo<T> next;
 
         Nodo(T data){
-            this.dato = data;
+            this.info = data;
             this.next = null;
         }
+    }
+    public boolean isEmpty(){
+        return primero == null;
     }
 
     private Nodo<T> primero;
@@ -19,7 +22,7 @@ public class LSEncadenada<T> implements ILista<T> {
 
     public T removeFirst() {
         if(!isEmpty()){
-            T dato = primero.dato;
+            T dato = primero.info;
             primero = primero.next;
             return dato;
         }
@@ -27,11 +30,9 @@ public class LSEncadenada<T> implements ILista<T> {
     }
 
     public T getFirst(){
-        return isEmpty() ? null : primero.dato;
+        return isEmpty() ? null : primero.info;
     }
 
-    public boolean isEmpty(){
-        return primero == null;
-    }
+    
     
 }
