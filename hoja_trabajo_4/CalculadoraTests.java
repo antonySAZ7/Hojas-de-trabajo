@@ -82,7 +82,7 @@ public class CalculadoraTests {
 
     @Test
     void testEvaluacionPostfix() {
-        String postfix = "3 5 + 8 *";
+        String postfix = "3 5 + 2 *";
         assertEquals(16, calculadora.evaluarPostfix(postfix));
     }
 
