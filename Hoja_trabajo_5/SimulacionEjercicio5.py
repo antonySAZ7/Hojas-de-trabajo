@@ -41,7 +41,7 @@ def proceso(instancia, nombre, ram, cpu, instruccionesCiclo, tiempos, colaEspera
             continue
     
     yield ram.put(memoriaRequerida)
-    print(f"En este justo momento {instancia.now:.4f} este proceso {nombre} termina y libera esto de memorio: {memoriaRequerida}")
+    print(f"En este justo momento {instancia.now:.4f} este proceso {nombre} termina y libera esto de memoria: {memoriaRequerida}")
     tiempos.append(instancia.now - llegada)
     
 def generarProcesos(instancia, cantProcesos, ram, cpu, intervalo, instruccionesCiclo, tiempos, colaEspera):
@@ -51,11 +51,12 @@ def generarProcesos(instancia, cantProcesos, ram, cpu, intervalo, instruccionesC
 
 def generar_graficas():
     procesos = [25, 50, 100, 150, 200]
+    intervalo = 1 
     configuraciones = [
-        {"ram": 100, "cpu": 1, "instrucciones": 3},
-        {"ram": 200, "cpu": 1, "instrucciones": 3},
         {"ram": 100, "cpu": 1, "instrucciones": 6},
-        {"ram": 100, "cpu": 2, "instrucciones": 3},
+        {"ram": 100, "cpu": 1, "instrucciones": 6},
+        {"ram": 100, "cpu": 1, "instrucciones": 6},
+        {"ram": 100, "cpu": 1, "instrucciones": 6},
     ]
     
     plt.figure(figsize=(10, 6))
@@ -68,19 +69,20 @@ def generar_graficas():
             ram = simpy.Container(env, init=conf["ram"], capacity=conf["ram"])
             cpu = simpy.Resource(env, capacity=conf["cpu"])
             colaEspera = []
-            env.process(generarProcesos(env, proc, ram, cpu, 10, conf["instrucciones"], tiempos, colaEspera))
+            env.process(generarProcesos(env, proc, ram, cpu, intervalo, conf["instrucciones"], tiempos, colaEspera))
             env.run()
             tiempos_prom.append(np.mean(tiempos))
             desv_std.append(np.std(tiempos))
-        plt.errorbar(procesos, tiempos_prom, yerr=desv_std, label=f"RAM {conf['ram']}, CPU {conf['cpu']}, Inst {conf['instrucciones']}", capsize=5, marker='o', linestyle='-')
+        plt.errorbar(procesos, tiempos_prom, yerr=desv_std, label=f"RAM {conf['ram']}, CPU {conf['cpu']}, Inst {conf['instrucciones']}", capsize=15, marker='o', linestyle='-')
     
     plt.xlabel("Número de procesos", fontsize=12)
     plt.ylabel("Tiempo promedio de ejecución", fontsize=12)
     plt.legend()
-    plt.title("Tiempo de ejecución en diferentes configuraciones", fontsize=14, fontweight='bold')
+    plt.title(f"Tiempo de ejecución en diferentes configuraciones (con intervalo de {intervalo})", fontsize=14, fontweight='bold')
     plt.grid(True, linestyle='--', linewidth=0.5)
     plt.xticks(procesos)
     plt.yticks(fontsize=10)
     plt.show()
+
 
 generar_graficas()
