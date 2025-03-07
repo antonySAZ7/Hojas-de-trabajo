@@ -3,16 +3,6 @@ import random
 import numpy as np
 import matplotlib.pyplot as plt
 
-def solicitarOpcion(mensaje, opcionesUnicas):
-    while True:
-        try:
-            valor = int(input(mensaje))
-            if valor in opcionesUnicas:
-                return valor
-            else:
-                print(f"error!!!, solo se pueden estas opciones :) : {opcionesUnicas}")
-        except ValueError:
-            print("Entrada no valida, debe ser un numero entero.") 
             
 def proceso(instancia, nombre, ram, cpu, instruccionesCiclo, tiempos, colaEspera):
     llegada = instancia.now  
@@ -51,12 +41,12 @@ def generarProcesos(instancia, cantProcesos, ram, cpu, intervalo, instruccionesC
 
 def generar_graficas():
     procesos = [25, 50, 100, 150, 200]
-    intervalo = 1 
+    intervalo = 5 
     configuraciones = [
-        {"ram": 100, "cpu": 1, "instrucciones": 6},
-        {"ram": 100, "cpu": 1, "instrucciones": 6},
-        {"ram": 100, "cpu": 1, "instrucciones": 6},
-        {"ram": 100, "cpu": 1, "instrucciones": 6},
+        {"ram": 200, "cpu": 2, "instrucciones": 3},
+        {"ram": 200, "cpu": 2, "instrucciones": 3},
+        {"ram": 200, "cpu": 2, "instrucciones": 3},
+        {"ram": 200, "cpu": 2, "instrucciones": 3},
     ]
     
     plt.figure(figsize=(10, 6))
